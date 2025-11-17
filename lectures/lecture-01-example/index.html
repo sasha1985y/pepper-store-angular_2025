@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      --font: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+      --font-size: 16px;
+
+      font-family: var(--font);
+      font-size: var(--font-size);
+    }
+
+    .button {
+      background: #ccc;
+      border: #ddd;
+      border-radius: 16px;
+      color: #000;
+      font-family: var(--font);
+      font-size: var(--font-size);
+      padding: 0.5rem 1rem;
+      margin: 0;
+    }
+
+    .button:active {
+      transform: scale(0.99);
+    }
+
+    .button-active {
+      background: rgb(211, 72, 104);
+      border-color: rgb(160, 70, 70);
+      color: #fff;
+    }
+
+    .dialog {
+      border: 0;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(72, 26, 37, 0.3);
+    }
+  </style>
+</head>
+
+<body>
+  <div id="container"></div>
+
+  <script>
+    class Component {
+      children = ""
+      className = ""
+      template = function () { throw new TypeError("Unimplemented method. Override render") }
+
+      constructor({ children, className }) {
+        this.children = children;
+        this.className = className;
+      }
+
+      render(container) {
+        container.innerHTML = this.template();
+      }
+    }
+
+    class Dialog extends Component {
+      open = false
+
+      template = function () {
+        return `<dialog ${this.open ? `open` : ``} class="${this.className}">${this.children}</dialog>`;
+      }
+
+      constructor(props) {
+        const {
+          open,
+          ...rest
+        } = props;
+
+        super(rest);
+        this.open = open;
+      }
+    }
+
+    class OOPButton extends Component {
+      type = "button"
+
+      template = function () {
+        return `<button type="${this.type}" class="${this.className}">${this.children}</button>`;
+      }
+
+      constructor(props) {
+        const {
+          type,
+          ...rest
+        } = props;
+
+        super(rest);
+        this.type = type;
+      }
+    }
+
+    const container = document.querySelector("#container");
+
+    const myButton = new OOPButton({
+      children: "Close dialog",
+      type: "button",
+      className: "button button-active",
+    });
+
+    const dialog = new Dialog({
+      className: "dialog",
+      open: true,
+    });
+
+    dialog.render(container);
+
+    const dialogElement = container.querySelector("dialog");
+    myButton.render(dialogElement);
+
+    const buttonElement = dialogElement.querySelector("button");
+    buttonElement.onclick = () => {
+      dialog.open = false;
+      dialog.render(container);
+    }
+
+    document.onkeypress = function(evt) {
+      if (evt.key === "Escape") {
+        dialog.open = false;
+        dialog.render(container);
+      }
+    }
+  </script>
+
+</body>
+</html>

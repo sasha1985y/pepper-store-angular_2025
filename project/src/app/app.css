@@ -1,0 +1,9 @@
+.control-radio {
+  background-color: transparent;
+  color: var(--color-gray-600);
+}
+
+input[type=radio]:checked + .control-radio {
+  background-color: var(--color-red-800);
+  color: var(--color-white);
+}

@@ -1,0 +1,82 @@
+<main class="flex-1 flex flex-row items-start gap-2.5 pt-[420px] px-2.5 pb-10 bg-[url(/section.png)] bg-no-repeat bg-position-[center_top]">
+  <aside class="w-1/4 bg-gray-100 border border-gray-200 rounded-md p-4">
+    <form>
+      <fieldset class="flex flex-col gap-3 mb-6">
+        <legend class="font-bold mb-3">Product Type</legend>
+        <app-checkbox name="product-type" value="chillies" label="Whole Chillies" />
+        <app-checkbox name="product-type" value="spices" label="Ground Spices" />
+        <app-checkbox name="product-type" value="sauces" label="Scorching Sauces" />
+        <app-checkbox name="product-type" value="blends" label="Sadistic Blends" />
+        <app-checkbox name="product-type" value="extracts" label="Infernal Extracts" />
+      </fieldset>
+      <fieldset class="flex flex-col gap-3">
+        <legend class="font-bold mb-3">Agony Level</legend>
+        <app-checkbox name="agony-level" value="1" label="Warming Up" />
+        <app-checkbox name="agony-level" value="2" label="Serious Heat" />
+        <app-checkbox name="agony-level" value="3" label="Ring of Fire" />
+        <app-checkbox name="agony-level" value="4" label="Legal Weapon" />
+      </fieldset>
+    </form>
+  </aside>
+  <section class="w-3/4">
+    <form class="flex flex-row justify-between mb-4">
+      <input type="text" placeholder="Find your pain" class="bg-gray-100 bg-[url('/icons/search.svg')] bg-no-repeat bg-position-[calc(100%-12px-16px/2)_50%] border border-gray-200 rounded-full px-4 pr-[calc(12px+16px/2+16px)] py-1 appearance-none" />
+
+      <div class="flex gap-2 items-center align-center">
+        <input type="radio" hidden id="sort-default" name="sort" value="default" checked />
+        <label class="control-radio rounded-md px-2 py-1" for="sort-default">New</label>
+
+        <input type="radio" hidden id="sort-price-asc" name="sort" value="price-asc" />
+        <label class="control-radio rounded-md px-2 py-1" for="sort-price-asc">Price Low</label>
+
+        <input type="radio" hidden id="sort-price-desc" name="sort" value="price-desc" />
+        <label class="control-radio rounded-md px-2 py-1" for="sort-price-desc">Price High</label>
+
+        <input type="radio" hidden id="sort-rating" name="sort" value="rating" />
+        <label class="control-radio rounded-md px-2 py-1" for="sort-rating">Scoville Rating</label>
+      </div>
+    </form>
+    <section class="flex flex-wrap gap-2">
+      <a href="#">
+        <article class="bg-gray-100 border border-gray-200 rounded-md p-4 hover:border-gray-300">
+          <img class="mb-4" src="/products/pepper-01.png" width="272" height="247" alt="Ghost Pepper Powder" />
+          <h2 class="mb-2">Ghost Pepper Powder</h2>
+          <p class="mb-2 font-600">$6.66</p>
+          <p class="text-sm text-gray-500">A lingering heat that will haunt you</p>
+        </article>
+      </a>
+      <a href="#">
+        <article class="bg-gray-100 border border-gray-200 rounded-md p-4 hover:border-gray-300">
+          <img class="mb-4" src="/products/pepper-01.png" width="272" height="247" alt="Ghost Pepper Powder" />
+          <h2 class="mb-2">Ghost Pepper Powder</h2>
+          <p class="mb-2 font-600">$6.66</p>
+          <p class="text-sm text-gray-500">A lingering heat that will haunt you</p>
+        </article>
+      </a>
+      <a href="#">
+        <article class="bg-gray-100 border border-gray-200 rounded-md p-4 hover:border-gray-300">
+          <img class="mb-4" src="/products/pepper-01.png" width="272" height="247" alt="Ghost Pepper Powder" />
+          <h2 class="mb-2">Ghost Pepper Powder</h2>
+          <p class="mb-2 font-600">$6.66</p>
+          <p class="text-sm text-gray-500">A lingering heat that will haunt you</p>
+        </article>
+      </a>
+      <a href="#">
+        <article class="bg-gray-100 border border-gray-200 rounded-md p-4 hover:border-gray-300">
+          <img class="mb-4" src="/products/pepper-01.png" width="272" height="247" alt="Ghost Pepper Powder" />
+          <h2 class="mb-2">Ghost Pepper Powder</h2>
+          <p class="mb-2 font-600">$6.66</p>
+          <p class="text-sm text-gray-500">A lingering heat that will haunt you</p>
+        </article>
+      </a>
+      <a href="#">
+        <article class="bg-gray-100 border border-gray-200 rounded-md p-4 hover:border-gray-300">
+          <img class="mb-4" src="/products/pepper-01.png" width="272" height="247" alt="Ghost Pepper Powder" />
+          <h2 class="mb-2">Ghost Pepper Powder</h2>
+          <p class="mb-2 font-600">$6.66</p>
+          <p class="text-sm text-gray-500">A lingering heat that will haunt you</p>
+        </article>
+      </a>
+    </section>
+  </section>
+</main>

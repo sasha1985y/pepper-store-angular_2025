@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 import { AppHeader } from './layout/header/header';
 import { AppFooter } from './layout/footer/footer';
-import { Checkbox } from './components/checkbox/checkbox';
 
 @Component({
   selector: 'app-root',
-  imports: [/*RouterOutlet, */AppHeader, AppFooter, Checkbox],
+  imports: [RouterOutlet, AppHeader, AppFooter],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })

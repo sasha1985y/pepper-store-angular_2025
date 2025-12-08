@@ -1,16 +1,16 @@
 export enum ProductType {
-  CHILLY = 1,
-  SPICE = 2,
-  SAUCE = 3,
-  BLEND = 4,
-  EXTRACT = 5,
+  CHILLY = "chilly",
+  SPICE = "spice",
+  SAUCE = "sauce",
+  BLEND = "blend",
+  EXTRACT = "extract",
 }
 
 export enum HeatLevel {
-  LOWEST = 1,
-  MEDIUM = 2,
-  HIGHER = 3,
-  HIGH = 4,
+  LOWEST = "l",
+  MEDIUM = "m",
+  HIGHER = "l",
+  HIGH = "xl",
 }
 
 export interface Product {
@@ -18,7 +18,7 @@ export interface Product {
   name: string,
   price: {
     value: number,
-    currency: "USD",
+    currency: "USD" | "EUR" | "GBP",
   },
   description: string,
   image: string,

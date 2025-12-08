@@ -1,10 +1,19 @@
-import { Injectable } from '@angular/core';
+import { computed, Injectable, signal } from '@angular/core';
 import { HeatLevel, Product, ProductType } from '../types/product';
+
+export enum SortDirection {
+  NEW = "sort-new",
+  PRICE_ASC = "sort-price-asc",
+  PRICE_DESC = "sort-price-desc",
+  RATING = "sort-rating",
+}
 
 @Injectable({
   providedIn: 'root',
 })
 export class CatalogData {
+  static DEFAULT_SORT_DIRECTION = SortDirection.NEW
+
   #data: Product[] = [
     {
       id: "01",
@@ -37,7 +46,7 @@ export class CatalogData {
       name: "Trinidad Scorpion Venom",
       price: {
         value: 12.99,
-        currency: "USD",
+        currency: "EUR",
       },
       description: "A blistering sting you won't forget",
       image: "/products/pepper-03.png",
@@ -50,7 +59,7 @@ export class CatalogData {
       name: "The Abyss - Pure Evil Extract",
       price: {
         value: 25.00,
-        currency: "USD",
+        currency: "GBP",
       },
       description: "One drop is a crime. Use with caution",
       image: "/products/pepper-04.png",
@@ -62,8 +71,8 @@ export class CatalogData {
       id: "05",
       name: `"Why Did I Do This?" Hot Salt`,
       price: {
-        value: 16.20,
-        currency: "USD",
+        value: 16.333333331,
+        currency: "EUR",
       },
       description: "A salty, crunchy path to pure regret",
       image: "/products/pepper-05.png",
@@ -73,7 +82,35 @@ export class CatalogData {
     },
   ]
 
-  getFilteredData() {
-    return this.#data.filter(() => true);
-  }
+  sortDirection = signal(CatalogData.DEFAULT_SORT_DIRECTION)
+
+  selectedHeatLevels = signal<HeatLevel[]>([]);
+
+  filteredData = computed(() => {
+    const newList = [...this.#data];
+
+    const filteredList = newList.filter(() => true);
+
+    filteredList.sort((a, b) => {
+      if (this.sortDirection() === CatalogData.DEFAULT_SORT_DIRECTION) {
+        return 0;
+      }
+
+      if (this.sortDirection() === SortDirection.PRICE_ASC) {
+        return a.price.value - b.price.value;
+      }
+
+      if (this.sortDirection() === SortDirection.PRICE_DESC) {
+        return b.price.value - a.price.value;
+      }
+
+      if (this.sortDirection() === SortDirection.RATING) {
+        return b.rating - a.rating;
+      }
+
+      return 0;
+    });
+
+    return filteredList;
+  })
 }

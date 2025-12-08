@@ -11,10 +11,9 @@
       </fieldset>
       <fieldset class="flex flex-col gap-3">
         <legend class="font-bold mb-3">Agony Level</legend>
-        <app-checkbox name="agony-level" value="1" label="Warming Up" />
-        <app-checkbox name="agony-level" value="2" label="Serious Heat" />
-        <app-checkbox name="agony-level" value="3" label="Ring of Fire" />
-        <app-checkbox name="agony-level" value="4" label="Legal Weapon" />
+        @for (heatLevel of heatLevelFilterName; track heatLevel[0]) {
+          <app-checkbox name="agony-level" [value]="heatLevel[0]" [label]="heatLevel[1]" (change)="onHeatLevelChange($event)" />
+        }
       </fieldset>
     </form>
   </aside>
@@ -23,21 +22,14 @@
       <input type="text" placeholder="Find your pain" class="bg-gray-100 bg-[url('/icons/search.svg')] bg-no-repeat bg-position-[calc(100%-12px-16px/2)_50%] border border-gray-200 rounded-full px-4 pr-[calc(12px+16px/2+16px)] py-1 appearance-none" />
 
       <div class="flex gap-2 items-center align-center">
-        <input type="radio" hidden id="sort-default" name="sort" value="default" checked />
-        <label class="control-radio rounded-md px-2 py-1" for="sort-default">New</label>
-
-        <input type="radio" hidden id="sort-price-asc" name="sort" value="price-asc" />
-        <label class="control-radio rounded-md px-2 py-1" for="sort-price-asc">Price Low</label>
-
-        <input type="radio" hidden id="sort-price-desc" name="sort" value="price-desc" />
-        <label class="control-radio rounded-md px-2 py-1" for="sort-price-desc">Price High</label>
-
-        <input type="radio" hidden id="sort-rating" name="sort" value="rating" />
-        <label class="control-radio rounded-md px-2 py-1" for="sort-rating">Scoville Rating</label>
+        @for (direction of sortDirectionName; track direction[0]) {
+          <input type="radio" hidden [id]="direction[0]" name="sort" [value]="direction[0]" [checked]="catalog.sortDirection() === direction[0]" (change)="onSortDirectionChange($event)" />
+          <label class="control-radio rounded-md px-2 py-1" [for]="direction[0]">{{ direction[1] }}</label>
+        }
       </div>
     </form>
     <section class="flex flex-wrap gap-2">
-      @for (item of catalog.getFilteredData(); track item.id) {
+      @for (item of catalog.filteredData(); track item.id) {
         <a href="#">
           <article class="bg-gray-100 border border-gray-200 rounded-md p-4 hover:border-gray-300">
             <img class="mb-4" [src]="item.image" width="272" height="247" [alt]="item.name" />

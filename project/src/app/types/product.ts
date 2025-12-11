@@ -7,7 +7,7 @@ export enum ProductType {
 }
 
 export enum HeatLevel {
-  LOWEST = "l",
+  LOWEST = "s",
   MEDIUM = "m",
   HIGHER = "l",
   HIGH = "xl",

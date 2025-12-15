@@ -23,9 +23,9 @@ const SortFunctionByDirection = new Map<SortDirection, (a: Product, b: Product) 
 export class CatalogData {
   static DEFAULT_SORT_DIRECTION = SortDirection.NEW
 
-  #data = signal<Product[]>([])
-
   #apiFetcher = inject(ApiFetcher)
+
+  #data = signal<Product[]>([])
 
   sortDirection = signal(CatalogData.DEFAULT_SORT_DIRECTION)
 

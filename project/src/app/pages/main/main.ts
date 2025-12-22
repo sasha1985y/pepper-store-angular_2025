@@ -1,32 +1,42 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
-import { Checkbox } from '../../components/checkbox/checkbox';
 import { CatalogData, SortDirection } from '../../services/catalog-data';
 import { CurrencyPipe } from '@angular/common';
 import { HeatLevel, ProductType } from '../../types/product';
 import { API_URL, ApiFetcher } from '../../services/api-fetcher';
 import { environment } from '../../../environments/environment';
+import { ActivatedRoute, Router } from '@angular/router';
+
+enum SearchParamName {
+  HEAT_LEVELS = "heatLevels[]",
+  PRODUCT_TYPES = "productTypes[]",
+  SORT_DIRECTION = "sort",
+}
 
 @Component({
   selector: 'app-main',
-  imports: [Checkbox, CurrencyPipe],
+  imports: [CurrencyPipe],
   templateUrl: './main.html',
   styleUrl: './main.css',
 })
 export class Main implements OnInit {
   #apiFetcher = inject(ApiFetcher)
 
+  #route = inject(ActivatedRoute)
+
+  #router = inject(Router)
+
   catalog = inject(CatalogData);
 
   isLoading = signal<boolean>(true);
 
-  sortDirectionName = [
+  sortDirectionName:[SortDirection, string][] = [
     [SortDirection.NEW, "New"],
     [SortDirection.PRICE_ASC, "Price Low"],
     [SortDirection.PRICE_DESC, "Price High"],
     [SortDirection.RATING, "Scoville Rating"],
   ];
 
-  productTypeFilterName = [
+  productTypeFilterName:[ProductType, string][] = [
     [ProductType.CHILLY, "Whole Chillies"],
     [ProductType.SPICE, "Ground Spices"],
     [ProductType.SAUCE, "Scorching Sauces"],
@@ -34,7 +44,7 @@ export class Main implements OnInit {
     [ProductType.EXTRACT, "Infernal Extracts"],
   ];
 
-  heatLevelFilterName = [
+  heatLevelFilterName:[HeatLevel, string][] = [
     [HeatLevel.LOWEST, "Warming Up"],
     [HeatLevel.MEDIUM, "Serious Heat"],
     [HeatLevel.HIGHER, "Ring of Fire"],
@@ -42,6 +52,12 @@ export class Main implements OnInit {
   ];
 
   ngOnInit(): void {
+    this.#route.queryParams.subscribe((values) => {
+      this.catalog.selectedHeatLevels.set(values[SearchParamName.HEAT_LEVELS] as HeatLevel[] ?? []);
+      this.catalog.selectedProductTypes.set(values[SearchParamName.PRODUCT_TYPES] as ProductType[] ?? []);
+      this.catalog.sortDirection.set(values[SearchParamName.SORT_DIRECTION] as SortDirection ?? CatalogData.DEFAULT_SORT_DIRECTION);
+    });
+
     this.#apiFetcher.get(API_URL.PRODUCTS).subscribe((data) => {
       this.catalog.data.set(data.data.map((i) => ({
         ...i,
@@ -55,21 +71,50 @@ export class Main implements OnInit {
     });
   }
 
-  onSortDirectionChange(evt: Event) {
+  onSortDirectionClick(evt: Event) {
+    evt.preventDefault();
+
     const clickedInput = evt.target as HTMLInputElement;
     const newSortDirection = clickedInput.value as SortDirection;
-    this.catalog.sortDirection.set(newSortDirection)
+
+    this.#router.navigate([], {
+      relativeTo: this.#route,
+      queryParams: {
+        [SearchParamName.SORT_DIRECTION]: newSortDirection === CatalogData.DEFAULT_SORT_DIRECTION ? null : newSortDirection,
+      },
+      queryParamsHandling: "merge",
+    });
   }
 
-  onHeatLevelChange(evt: Event) {
+  onHeatLevelClick(evt: Event) {
+    evt.preventDefault();
+
     const clickedInput = evt.target as HTMLInputElement;
     const checkedHeatLevel = clickedInput.value as HeatLevel;
-    this.catalog.toggleHeatLevel(checkedHeatLevel);
+    const newHeatLevels = CatalogData.toggleHeatLevel(this.catalog.selectedHeatLevels(), checkedHeatLevel);
+
+    this.#router.navigate([], {
+      relativeTo: this.#route,
+      queryParams: {
+        [SearchParamName.HEAT_LEVELS]: newHeatLevels.length === 0 ? null : newHeatLevels,
+      },
+      queryParamsHandling: "merge",
+    });
   }
 
-  onProductTypeChange(evt: Event) {
+  onProductTypeClick(evt: Event) {
+    evt.preventDefault();
+
     const clickedInput = evt.target as HTMLInputElement;
     const checkedProductType = clickedInput.value as ProductType;
-    this.catalog.toggleSelectedProductType(checkedProductType);
+    const newProductTypes = CatalogData.toggleSelectedProductType(this.catalog.selectedProductTypes(), checkedProductType);
+
+    this.#router.navigate([], {
+      relativeTo: this.#route,
+      queryParams: {
+        [SearchParamName.PRODUCT_TYPES]: newProductTypes.length === 0 ? null : newProductTypes,
+      },
+      queryParamsHandling: "merge",
+    });
   }
 }

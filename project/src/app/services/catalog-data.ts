@@ -58,21 +58,19 @@ export class CatalogData {
     return filteredList;
   })
 
-  toggleHeatLevel(heatLevel: HeatLevel) {
-    if (this.selectedHeatLevels().includes(heatLevel)) {
-      this.selectedHeatLevels.update((levels) => levels.filter((level) => level !== heatLevel));
-      return;
+  static toggleHeatLevel(selectedHeatLevels: HeatLevel[], heatLevel: HeatLevel) {
+    if (selectedHeatLevels.includes(heatLevel)) {
+      return selectedHeatLevels.filter((level) => level !== heatLevel);
     }
 
-    this.selectedHeatLevels.update((levels) => [...levels, heatLevel]);
+    return [...selectedHeatLevels, heatLevel];
   }
 
-  toggleSelectedProductType(productType: ProductType) {
-    if (this.selectedProductTypes().includes(productType)) {
-      this.selectedProductTypes.update((types) => types.filter((type) => type !== productType));
-      return;
+  static toggleSelectedProductType(selectedProductTypes: ProductType[], productType: ProductType) {
+    if (selectedProductTypes.includes(productType)) {
+      return selectedProductTypes.filter((type) => type !== productType);
     }
 
-    this.selectedProductTypes.update((types) => [...types, productType]);
+    return [...selectedProductTypes, productType];
   }
 }

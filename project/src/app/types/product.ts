@@ -15,6 +15,7 @@ export enum HeatLevel {
 
 export interface Product {
   id: string,
+  documentId: string,
   name: string,
   price: {
     value: number,

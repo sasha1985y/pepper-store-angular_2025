@@ -4,7 +4,7 @@ import { CurrencyPipe } from '@angular/common';
 import { HeatLevel, ProductType } from '../../types/product';
 import { API_URL, ApiFetcher } from '../../services/api-fetcher';
 import { environment } from '../../../environments/environment';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 
 enum SearchParamName {
   HEAT_LEVELS = "heatLevels[]",
@@ -14,7 +14,7 @@ enum SearchParamName {
 
 @Component({
   selector: 'app-main',
-  imports: [CurrencyPipe],
+  imports: [CurrencyPipe, RouterLink],
   templateUrl: './main.html',
   styleUrl: './main.css',
 })
@@ -59,6 +59,8 @@ export class Main implements OnInit {
     });
 
     this.#apiFetcher.get(API_URL.PRODUCTS).subscribe((data) => {
+      console.log(data.data);
+
       this.catalog.data.set(data.data.map((i) => ({
         ...i,
         image: {

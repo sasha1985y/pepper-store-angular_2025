@@ -106,3 +106,6 @@
 | 8    | API для товаров       | `/api/products` | CRUD, HTTP            |
 | 9    | API для заказов       | `/api/orders`   | POST, DELETE          |
 
+npx ng serve --host 0.0.0.0
+   
+

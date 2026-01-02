@@ -1,0 +1,57 @@
+@media screen and (width > 1440px) {
+    .header-ul-navigation {
+        font-size: x-large;
+    }
+}
+
+@media screen and (1023px <= width <= 1440px) {
+    .header-ul-navigation {
+        font-size: small;
+    }
+}
+
+@media screen and (321px <= width <= 375px) {
+    .header-ul-navigation li {
+        gap: 10px;
+        font-size: x-small;
+    }
+
+    h1 span {
+        font-size: large;
+    }
+}
+
+@media screen and (321px <= width <= 425px) {
+    .header-ul-navigation {
+        gap: 10px;
+        font-size: small;
+        justify-content: flex-start;
+    }
+}
+
+@media screen and (width <= 320px) {
+    .header-ul-navigation {
+        flex-direction: column;
+        font-size: x-small;
+        gap: 10px;
+    }
+
+    h1 span {
+        font-size: large;
+    }
+}
+
+@media screen and (width <= 320px) {
+    h1 {
+        flex-direction: column;
+    }
+    h1 span {
+        font-size: large;
+    }
+}
+
+@media screen and (width <= 140px) {
+    .header-ul-controllbuttons li {
+        font-size: xx-small;
+    }
+}

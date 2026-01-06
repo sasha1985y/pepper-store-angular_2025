@@ -1,9 +1,140 @@
-<main class="flex flex-1 px-2.5 pb-10 ">
+<main class="product-page">
   @if (isLoading()) {
     <div class="flex items-center justify-center flex-1 mt-20">
       <p class="text-center text-gray-500">Loading product data&hellip;</p>
     </div>
   } @else {
-  <pre>{{ data() | json }}</pre>
+    <!-- <pre>{{ data() | json }}</pre> -->
+    
+    <div class="product-top">
+      <figure class="product-figure">
+        <img src="/pepper-01.png" alt="Ghost Pepper Powder — баночка с порошком и ложка" width="640" height="484" />
+        <figcaption class="visually-hidden">Ghost Pepper Powder, 50g</figcaption>
+      </figure>
+
+      <section class="product-summary" aria-labelledby="product-title">
+        <div class="product-summary-info">
+          <div class="h1-row">
+            <h1 id="product-title">Ghost Pepper Powder</h1>
+          </div>
+  
+          <div class="meta-row">
+            <span class="badge">per 50g</span>
+          </div>
+  
+          <div class="price-block" aria-live="polite">
+            <p class="price" aria-hidden="true">$6.66</p>
+            <p class="sr-only">Цена: 6 долларов 66 центов</p>
+          </div>
+        </div>
+        
+        <ul class="product-summary-text">
+          <li class="product-desc">
+            Ghost Pepper, or Bhut Jolokia, is a true legend in the world of heat. 
+            Hailing from Northeast India, it was one of the first peppers to breach 
+            the 1 million Scoville mark, and its reputation is absolutely earned. 
+            Its burn isn't just intense—it's a slow, creeping, all-consuming fire.
+          </li>
+          <li class="product-desc">
+            Don't be fooled by its initial, delicate sweetness and fruity notes. 
+            After about 30-45 seconds, the pepper's true nature is unleashed: an intense, 
+            merciless wave of fire that will make you question all of your life choices.
+          </li>
+          <li class="product-desc">
+            Our powder is hermetically sealed to preserve maximum freshness and demonic potency. 
+            Use it to craft extremely hot chili, sauces, or marinades. Start with microscopic amounts. 
+            You have been warned.
+          </li>
+        </ul>
+        <button type="submit" class="btn btn-primary">Add to Cart</button>
+        <!-- <form class="add-to-cart" aria-labelledby="product-title">
+          <label for="qty" class="qty-label">Quantity</label>
+          <input id="qty" name="quantity" type="number" min="1" value="1" class="qty-input" />
+        </form> -->
+      </section>
+    </div>
+
+    <!-- Technical specifications -->
+    <section class="accordion" aria-label="Accordion example">
+      <details>
+        <summary>
+          <h3>Technical Specifications</h3>
+        </summary>
+        <div class="content">
+          <ul>
+            <li>Origin: Northeast India</li>
+            <li>Scoville Heat Units (SHU): 855,000 – 1,041,427</li>
+            <li>Flavor Profile: Deceptively sweet, fruity, then overwhelmingly fiery.</li>
+            <li>Recommended Uses: Extreme sauces, chili cook-offs, dares.</li>
+            <li>Warning: Use in a well-ventilated area. Keep away from children, pets, and common sense.</li>
+          </ul>
+        </div>
+      </details>
+    </section>
+
+
+    <!-- Reviews -->
+    <section class="product-reviews" aria-labelledby="reviews-heading">
+      <h2 id="reviews-heading">Latest reviews</h2>
+
+      <ul class="reviews-list">
+        <li>
+          <article class="review" aria-labelledby="r1-title">
+            <header>
+              <h3 id="r1-title">This is the real deal!</h3>
+              <div class="rating" aria-hidden="true">★★★★★</div>
+            </header>
+            <p class="review-body">
+              Used Citra for my latest NEIPA, and the aroma is absolutely incredible. 
+              Poured hazy, with intense notes of grapefruit and passion fruit. A must-have for any hop-forward beer!
+            </p>
+            <footer class="review-meta">
+              <img src="/consumer.png" alt="consumer" class="avatar" />
+              <span class="author">ChiliHead_27</span>
+              <time datetime="2025-09-01">Sep 1, 2025</time>
+            </footer>
+          </article>
+        </li>
+
+        <!-- Пример второго отзыва -->
+        <li>
+          <article class="review" aria-labelledby="r2-title">
+            <header>
+              <h3 id="r2-title">Painfully Delicious</h3>
+              <div class="rating" aria-hidden="true">★★★★☆</div>
+            </header>
+            <p class="review-body">
+              Beyond the beautiful, brutal heat, there's a really nice fruity flavor. 
+              I used it to make a spicy mayo and it's incredible. Just be careful, 
+              it's not forgiving.
+            </p>
+            <footer class="review-meta">
+              <img src="/consumer.png" alt="consumer" class="avatar" />
+              <span class="author">SpiceMasochist</span>
+              <time datetime="2025-08-27">Aug 27, 2025</time>
+            </footer>
+          </article>
+        </li>
+
+        <li>
+          <article class="review" aria-labelledby="r2-title">
+            <header>
+              <h3 id="r2-title"> I've Made A Huge Mistake</h3>
+              <div class="rating" aria-hidden="true">★☆☆☆☆</div>
+            </header>
+            <p class="review-body">
+              My friend dared me. It's been an hour. I can see sounds. 
+              My disappointment is immeasurable and my day is ruined. 
+              This is a weapon, not a spice.
+            </p>
+            <footer class="review-meta">
+              <img src="/consumer.png" alt="consumer" class="avatar" />
+              <span class="author">RegretfulRookie</span>
+              <time datetime="2025-08-27">Aug 27, 2025</time>
+            </footer>
+          </article>
+        </li>
+      </ul>
+    </section>
   }
 </main>

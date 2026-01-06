@@ -2,6 +2,24 @@
 
 @import "tailwindcss";
 
-html, body {
-  min-height: 100vh;
+:root{
+  --max-width: 100vw;
+  --min-height: 100vh;
+  --max-height: auto;
+  --gap: 20px;
+  --accent: #c41616; /* красный как на картинке */
+  --muted: #F5F5F5;
+  --card-bg: #fff;
+  --card-border: #e6e6e6;
+  --radius: 6px;
+  --shadow: 0 2px 6px rgba(0,0,0,0.06);
+  --container-pad: 64px;
+  --font-size: 18px;
+  --main-color: #111D13;
+
 }
+
+/* html, body {
+  min-height: var(--min-height);
+  max-height: var(--max-height);
+} */

@@ -1,0 +1,47 @@
+@media screen and (321px <= width <= 425px) {
+    footer {
+        background-size: 85%;
+        background-position: center top 48px;
+        padding-top: 280px;
+    }
+
+    ul {
+        gap: calc(var(--spacing) * 5);
+    }
+}
+
+@media screen and (321px <= width <= 375px) {
+    ul {
+        font-size: calc(var(--text-sm) * 0.9);
+    }
+}
+
+@media screen and (width <= 320px) {
+    footer {
+        background-size: 80%;
+        background-position: center top 48px;
+        padding-top: 200px;
+    }
+
+    ul {
+        font-size: calc(var(--text-sm) * 0.8);
+        gap: calc(var(--spacing) * 3);
+    }
+}
+
+@media screen and (width <= 286px) {
+    footer {
+        background-size: 80%;
+        background-position: center top 48px;
+        padding-top: 170px;
+    }
+
+    ul {
+        flex-direction: column;
+        gap: calc(var(--spacing) * 1.5);
+    }
+
+    p {
+        font-size: calc(var(--text-sm) * 0.8);
+    }
+}

@@ -1,3 +1,9 @@
+header {
+    padding-left: calc(var(--max-width) * 0.045);
+    padding-right: calc(var(--max-width) * 0.045);
+    border-bottom: solid 1px var(--card-border);
+}
+
 @media screen and (width > 1440px) {
     .header-ul-navigation {
         font-size: x-large;
@@ -36,19 +42,15 @@
         gap: 10px;
     }
 
+    h1 {
+        flex-direction: column;
+    }
+    
     h1 span {
         font-size: large;
     }
 }
 
-@media screen and (width <= 320px) {
-    h1 {
-        flex-direction: column;
-    }
-    h1 span {
-        font-size: large;
-    }
-}
 
 @media screen and (width <= 140px) {
     .header-ul-controllbuttons li {

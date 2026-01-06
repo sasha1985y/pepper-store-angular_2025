@@ -12,8 +12,15 @@
     <li><a href="#">Resources</a></li>
     <li><a href="#">Contact</a></li>
   </ul>
-  <ul class="header-ul-controllbuttons flex flex-row flex-wrap items-center gap-3" aria-role="navigation">
-    <li><a href="/" class="bg-gray-200 border border-gray-700 rounded-md px-3 py-1 text-nowrap">Sign In</a></li>
-    <li><a href="/" class="bg-black border border-black text-white rounded-md px-3 py-1 text-nowrap">Register</a></li>
-  </ul>
+  @if (isAuth()) {
+    <ul class="header-ul-controllbuttons flex flex-row flex-wrap items-center gap-3" aria-role="navigation">
+      <li><a href="/" class="bg-gray-200 border border-gray-700 rounded-md px-3 py-1 text-nowrap">Sign In</a></li>
+      <li><a href="/" class="bg-black border border-black text-white rounded-md px-3 py-1 text-nowrap">Register</a></li>
+    </ul>
+  } @else {
+    <ul class="header-ul-userattributes flex flex-row flex-wrap items-center gap-3" aria-role="navigation">
+      <li><a href="/"><img src="/user_alt.svg" alt="The Scoville Inferno" width="35" height="15" /></a></li>
+      <li><a href="/"><img src="/shopping_bag.svg" alt="The Scoville Inferno" width="35" height="15" /></a></li>
+    </ul>
+  }
 </header>
